@@ -63,53 +63,39 @@ The Fleet Management Portal was developed using a modular approach, where each m
 To improve operator knowledge and reduce operational errors, the portal also includes an E-Learning module that provides instructional videos and allows operators to book training sessions with instructors. Additionally, an AI Chatbot module is incorporated as a support system to answer operator queries related to machine operation, safety procedures, and troubleshooting. Although currently implemented as a placeholder, the chatbot is designed for future integration with an AI language model.
 
 WORKFLOW:
-               
-                START
-                   │
-                   ▼
-      Open Fleet Management Portal
-                   │
-                   ▼
-      Seatbelt Detection (Webcam)
-                   │
-          Seatbelt Detected?
-             ┌─────────────┐
-         No  │             │ Yes
-             ▼             ▼
-      Access Denied    Operator Login
-                             │
-                             ▼
-                    Authentication
-                             │
-                             ▼
-                    Operator Dashboard
-                             │
-        ┌────────────┬───────────────┬───────────────┐
-        ▼            ▼               ▼               ▼
-   View Tasks   Fuel Status    Hazard Alerts   Emergency Alerts
-        │
-        ▼
- Task Time Prediction
-        │
-        ▼
- Incident Occurs?
-    ┌───────────┐
- No │           │ Yes
-    ▼           ▼
- Continue   Incident Logging
- Working         │
-                 ▼
-         Submit Incident Report
-                 │
-                 ▼
-          E-Learning Module
-                 │
-                 ▼
-      Watch Videos / Book Trainer
-                 │
-                 ▼
-          AI Chatbot Support
-                 │
-                 ▼
-                END
+```mermaid
+flowchart TD
 
+A([Start]) --> B["Open Fleet Management Portal"]
+B --> C["Seatbelt Detection - Webcam"]
+C --> D{"Seatbelt Detected?"}
+
+D -- No --> E["Access Denied"]
+D -- Yes --> F["Operator Login"]
+
+F --> G["Authentication"]
+G --> H["Operator Dashboard"]
+
+H --> I["View Tasks"]
+H --> J["Fuel Status"]
+H --> K["Hazard Alerts"]
+H --> L["Emergency Alerts"]
+
+I --> M["Task Time Prediction"]
+J --> M
+K --> M
+L --> M
+
+M --> N{"Incident Occurs?"}
+
+N -- No --> O["Continue Working"]
+N -- Yes --> P["Incident Logging"]
+
+P --> Q["Submit Incident Report"]
+Q --> R["E-Learning Module"]
+R --> S["Watch Videos / Book Trainer"]
+S --> T["AI Chatbot Support"]
+
+O --> U([End])
+T --> U
+```
